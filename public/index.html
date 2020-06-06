@@ -1,34 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+<head>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style2.css">
+    <link rel="stylesheet" href="assets/css/article.css">
+    <link rel="stylesheet" href="assets/css/website.css">
+
+
+</head>
+
+<body>
+    <noscript id="gatsby-noscript">Please enable Javascript in your browser.</noscript>
+    <div id="___gatsby"></div>
+    <div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -39,5 +25,229 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+
+    <script>
+        (function($) {
+            $(document).on('ready', function() {
+                /**
+                 * =====================================
+                 * Function for windows height and width
+                 * =====================================
+                 */
+                var slideIndex;
+                var slides = document.getElementById("testimonials-new-carousel_slides_slide-0").getElementsByClassName("TestimonialsCarousel__Image-sc-1fg86gc-13");
+                for (i = 0; i < slides.length; i++) {
+                    if (slides[i].getAttribute("style")) {
+                        slideIndex = i;
+                        break;
+                    }
+                }
+
+                function windowSize(el) {
+                    var result = 0;
+                    if ("height" == el)
+                        result = window.innerHeight ? window.innerHeight : $(window).height();
+                    if ("width" == el)
+                        result = window.innerWidth ? window.innerWidth : $(window).width();
+
+                    return result;
+                }
+
+                function deviceControll() {
+                    if (windowSize('width') < 768) {
+                        $('body').removeClass('desktop').removeClass('tablet').addClass('mobile');
+                    } else if (windowSize('width') < 992) {
+                        $('body').removeClass('mobile').removeClass('desktop').addClass('tablet');
+                    } else {
+                        $('body').removeClass('mobile').removeClass('tablet').addClass('desktop');
+                    }
+                }
+
+
+
+
+                $(window).on('resize', function() {
+
+                    deviceControll();
+
+                });
+
+                deviceControll();
+                /**
+                 * =======================================
+                 * Top Fixed Navbar
+                 * =======================================
+                 */
+                $(document).on('scroll', function() {
+                    var activeClass = 'active',
+                        ActiveID = '.loWAZp',
+                        scrollPos = $(this).scrollTop();
+
+                    if (scrollPos > 370) {
+
+                        $(ActiveID).addClass(activeClass);
+                    } else {
+                        $(ActiveID).removeClass(activeClass);
+                    }
+                });
+                $(document).on('scroll', function() {
+                    var activeClass = 'scrolled',
+                        ActiveID = '.gFxBaQ',
+                        scrollPos = $(this).scrollTop();
+
+                    if (scrollPos > 1) {
+
+                        $(ActiveID).addClass(activeClass);
+                    } else {
+                        $(ActiveID).removeClass(activeClass);
+                    }
+                });
+
+                $("#testimonials-new-carousel_slides_controls_control-button-1").on('click', function() {
+                    slideIndex += 1;
+                    var slides = document.getElementById("testimonials-new-carousel_slides_slide-0").getElementsByClassName("TestimonialsCarousel__Image-sc-1fg86gc-13");
+                    var slides1 = document.getElementById("testimonials-new-carousel_slides_slide-1").getElementsByClassName("TestimonialsCarousel__Image-sc-1fg86gc-13");
+                    var slides2 = document.getElementById("testimonials-new-carousel_slides_slide-2").getElementsByClassName("TestimonialsCarousel__Image-sc-1fg86gc-13");
+
+
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].setAttribute("style", "");
+                    }
+                    Index = slideIndex % slides.length;
+
+                    slides[Index].setAttribute("style", "transform: translateX(-50%); z-index: 0; visibility: visible;");
+                    slides[(Index + 1) % slides.length].setAttribute("style", "transform: translateX(0px); z-index: 10; visibility: visible;");
+                    slides[(Index + 2) % slides.length].setAttribute("style", "transform: translateX(100%); z-index: 20; visibility: hidden;");
+
+                    slides1[(Index + 1) % slides.length].setAttribute("style", "transform: translateX(-50%); z-index: 0; visibility: visible;");
+                    slides1[(Index + 2) % slides.length].setAttribute("style", "transform: translateX(0px); z-index: 10; visibility: visible;");
+                    slides1[(Index + 3) % slides.length].setAttribute("style", "transform: translateX(100%); z-index: 20; visibility: hidden;");
+
+                    slides2[(Index + 2) % slides.length].setAttribute("style", "transform: translateX(-50%); z-index: 0; visibility: visible;");
+                    slides2[(Index + 3) % slides.length].setAttribute("style", "transform: translateX(0px); z-index: 10; visibility: visible;");
+                    slides2[(Index + 4) % slides.length].setAttribute("style", "transform: translateX(100%); z-index: 20; visibility: hidden;");
+
+
+                });
+                $("#testimonials-new-carousel_slides_controls_control-button-0").on('click', function() {
+                    slideIndex -= 1;
+                    var slides = document.getElementById("testimonials-new-carousel_slides_slide-0").getElementsByClassName("TestimonialsCarousel__Image-sc-1fg86gc-13");
+                    var slides1 = document.getElementById("testimonials-new-carousel_slides_slide-1").getElementsByClassName("TestimonialsCarousel__Image-sc-1fg86gc-13");
+                    var slides2 = document.getElementById("testimonials-new-carousel_slides_slide-2").getElementsByClassName("TestimonialsCarousel__Image-sc-1fg86gc-13");
+
+
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].setAttribute("style", "");
+                    }
+                    Index = slideIndex % slides.length;
+
+
+                    slides[Index].setAttribute("style", "transform: translateX(-50%); z-index: 0; visibility: visible;");
+                    slides[(Index + 1) % slides.length].setAttribute("style", "transform: translateX(0px); z-index: 10; visibility: visible;");
+                    slides[(Index + 2) % slides.length].setAttribute("style", "transform: translateX(100%); z-index: 20; visibility: hidden;");
+
+                    slides1[(Index + 1) % slides.length].setAttribute("style", "transform: translateX(-50%); z-index: 0; visibility: visible;");
+                    slides1[(Index + 2) % slides.length].setAttribute("style", "transform: translateX(0px); z-index: 10; visibility: visible;");
+                    slides1[(Index + 3) % slides.length].setAttribute("style", "transform: translateX(100%); z-index: 20; visibility: hidden;");
+
+                    slides2[(Index + 2) % slides.length].setAttribute("style", "transform: translateX(-50%); z-index: 0; visibility: visible;");
+                    slides2[(Index + 3) % slides.length].setAttribute("style", "transform: translateX(0px); z-index: 10; visibility: visible;");
+                    slides2[(Index + 4) % slides.length].setAttribute("style", "transform: translateX(100%); z-index: 20; visibility: hidden;");
+
+                });
+
+                $("#testimonials-new-carousel_slides_slide-0").on('click', function() {
+                    const div = document.createElement('div');
+                    div.className = "newmodal";
+                    div.innerHTML = `<div class="TestimonialsCarouselVideos__VideoOverlay-sc-1jlmkas-0 SmDlc">
+                        <div class="TestimonialsCarouselVideos__VideoContainer-sc-1jlmkas-1 eBDXlg">
+                            <button class="TestimonialsCarouselVideos__CloseButton-sc-1jlmkas-7 jBvhXW" onclick=removeModal() ><svg width="16" height="16" version="1.1" viewBox="0 0 16 16"><g id="STYLE" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="UI---Interactions" fill="#142B6F" transform="translate(-385.000000, -652.000000)"><g id="UI" transform="translate(135.000000, 530.000000)"><g id="Default" transform="translate(0.000000, 118.000000)"><g id="Icon-X" transform="translate(250.000000, 4.000000)"><polygon id="Shape" points="16 1.511 14.489 0 8.034 6.455 1.511 0 0 1.511 6.455 8.034 0 14.489 1.511 16 8.034 9.545 14.489 16 16 14.489 9.545 8.034"></polygon></g></g></g></g></g></svg></button><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/1jHc3vOecy4iI8WWaAwOU0/331375f1893872b30d41e619db0a6837/Erica.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 gMmeke" src="" style="transform: translateX(300%) scale(0.75); opacity: 0;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/erica-high.mp4" type="video/mp4" id="ericaMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/erica.webm" type="video/webm" id="ericaWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/erica.ogg" type="video/ogg" id="ericaOGGSource"><track src="/subtitles/vt_erica_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Erica Chidi Cohen</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Doula and Health Educator</span></div><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/77p9R4oaLmOiSAQ2guowwo/0ce88f89f206061608084f4d4ded8c84/Kara.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 gMmeke" src="" style="transform: translateX(400%) scale(0.75); opacity: 0;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/kara-high.mp4" type="video/mp4" id="karaMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/kara.webm" type="video/webm" id="karaWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/kara.ogg" type="video/ogg" id="karaOGGSource"><track src="/subtitles/vt_kara_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Kara Griffin</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Nutritionist and Trainer</span></div><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/7mYtU8P3PyqEKA68sIO26e/a23d68d60b62d2a8ba6b57fc26a88247/Sheryl.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 gMmeke" src="" style="transform: translateX(-500%) scale(0.75); opacity: 0;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/sheryl-high.mp4" type="video/mp4" id="sherylMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/sheryl.webm" type="video/webm" id="sherylWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/sheryl.ogg" type="video/ogg" id="sherylOGGSource"><track src="/subtitles/vt_sheryl_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Sheri Foelsch</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Registered Nurse</span></div><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/6QHZs8egYoieIkQYAKqcK4/ff8232594c24461bdac92b601121ee1c/Brittany.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 gMmeke" src="" style="transform: translateX(-400%) scale(0.75); opacity: 0;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/brittany-high.mp4" type="video/mp4" id="brittanyMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/brittany.webm" type="video/webm" id="brittanyWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/brittany.ogg" type="video/ogg" id="brittanyOGGSource"><track src="/subtitles/vt_brittany_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Brittany Harrer</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Co-Founder of Recruiting Agency</span></div><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/60cuCuZB4W4GwKWQg4q6aW/e28beda2de4f569c29cd510622d2b35f/Becky.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 gMmeke" src="" style="transform: translateX(-300%) scale(0.75); opacity: 0;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/becky-high.mp4" type="video/mp4" id="beckyMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/becky.webm" type="video/webm" id="beckyWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/becky.ogg" type="video/ogg" id="beckyOGGSource"><track src="/subtitles/vt_becky_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Rebecca Harris</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Insurance Broker</span></div><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/2eltTXqVT6SQaMAK20YuA2/ad2fc8cbfc57591856b8a2bd9493ff8e/Lindsay.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 gMmeke" src="" style="transform: translateX(-200%) scale(0.75); opacity: 1;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/lindsay-high.mp4" type="video/mp4" id="lindsayMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/lindsay.webm" type="video/webm" id="lindsayWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/lindsay.ogg" type="video/ogg" id="lindsayOGGSource"><track src="/subtitles/vt_lindsay_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Lindsay Scola</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Director of Talent Relations</span></div><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/6sTYavh0ZiSEMoG4GQaksy/7fc1c7f7ce7dde539162ae99340d108d/Caroline.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 eXvBFE" src="" style="transform: translateX(-100%) scale(0.75); opacity: 1;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/caroline-high.mp4" type="video/mp4" id="carolineMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/caroline.webm" type="video/webm" id="carolineWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/caroline.ogg" type="video/ogg" id="carolineOGGSource"><track src="/subtitles/vt_caroline_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Caroline Cameron</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Director of Operations</span></div><video autoplay="" controls="" preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/6j9vw3qwVO2UeIY2Qyqosw/1ccd552f499fbc73b2299336295dfbf5/Lori.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 gMmeke" style="transform: translateX(0%) scale(1); opacity: 1;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/lori-high.mp4" type="video/mp4" id="loriMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/lori.webm" type="video/webm" id="loriWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/lori.ogg" type="video/ogg" id="loriOGGSource"><track src="/subtitles/vt_lori_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="opacity: 1;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Lori Coyle</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Fitness Program Manager</span></div><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/3FtuxThaliMeei4WieUWmA/6cf2eb7aacb5d5ac700d685e7169869a/Crystalrose.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 enzsXo" src="" style="transform: translateX(100%) scale(0.75); opacity: 1;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/crystalrose-high.mp4" type="video/mp4" id="crystalroseMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/crystalrose.webm" type="video/webm" id="crystalroseWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/crystalrose.ogg" type="video/ogg" id="crystalroseOGGSource"><track src="/subtitles/vt_crystalrose_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Crystalrose Guerra</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Professional Athlete</span></div><video preload="none" poster="//images.ctfassets.net/uuc5ok478nyh/1X0CuRb2LmOqEyK26mSEky/30875b713167cba3aba22c4324c59fa1/Meghan.jpg" class="TestimonialsCarouselVideos__Video-sc-1jlmkas-2 gMmeke" src="" style="transform: translateX(200%) scale(0.75); opacity: 1;"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/megan-high.mp4" type="video/mp4" id="meganMp4SourceHigh"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/megan.webm" type="video/webm" id="meganWebMSource"><source src="https://d3tgv297hi4yx8.cloudfront.net/video-testimonials/megan.ogg" type="video/ogg" id="meganOGGSource"><track src="/subtitles/vt_megan_captions.vtt" label="English" kind="captions" srclang="en-us"></video><div class="TestimonialsCarouselVideos__VideoAbout-sc-1jlmkas-3 iYvXxn" style="transition: none 0s ease 0s;"><span class="TestimonialsCarouselVideos__Name-sc-1jlmkas-4 OQvlM">Megan Monahan</span> <span class="TestimonialsCarouselVideos__Title-sc-1jlmkas-5 iVQDIx">Meditation Teacher</span></div><div class="TestimonialsCarouselVideos__Controls-sc-1jlmkas-6 gBMhnz"><button class="TestimonialsCarouselVideos__ControlButton-sc-1jlmkas-8 coNqZa "onclick=plusSlides(-1)><svg width="18" height="12" version="1.1" viewBox="0 0 18 12"><title></title><desc></desc><g fill="none" fill-rule="evenodd" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><g stroke="#142B6F" stroke-width="2.25"><g><g><g><path d="M-2.1938007e-13,4.0010929 L14.8845268,4.0010929 L-2.1938007e-13,4.0010929 Z M14.8845268,4 L10.862069,0.0655737705 L14.8845268,4 Z M14.8845268,4 L10.862069,7.93442623 L14.8845268,4 Z" transform="translate(-776.000000, -654.000000) translate(135.000000, 530.000000) translate(0.000000, 118.000000) translate(649.500000, 12.000000) scale(-1, 1) translate(-649.500000, -12.000000) translate(642.000000, 8.000000)"></path></g></g></g></g></g></svg></button><button class="TestimonialsCarouselVideos__ControlButton-sc-1jlmkas-8 coNqZa " onclick=plusSlides(1)><svg width="18" height="12" version="1.1" viewBox="0 0 18 12"><title></title><desc></desc><g fill="none" fill-rule="evenodd" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><g stroke="#142B6F" stroke-width="2.25"><g><g><g><path d="M-2.1938007e-13,4.0010929 L14.8845268,4.0010929 L-2.1938007e-13,4.0010929 Z M14.8845268,4 L10.862069,0.0655737705 L14.8845268,4 Z M14.8845268,4 L10.862069,7.93442623 L14.8845268,4 Z" transform="translate(-820.000000, -654.000000) translate(135.000000, 530.000000) translate(0.000000, 118.000000) translate(687.000000, 8.000000)"></path></g></g></g></g></g></svg></button></div></div></div>`;
+
+                    document.getElementById('testimonials-new_container').appendChild(div);
+                    var vSlides = document.getElementsByClassName("TestimonialsCarouselVideos__Video-sc-1jlmkas-2");
+                    console.log(vSlides);
+                    console.log(slideIndex)
+                    for (var i = 0; i < vSlides.length; i++) {
+                        vSlides[i].setAttribute("style", "");
+                        vSlides[i].removeAttribute("autoplay");
+                        vSlides[i].removeAttribute("controls");
+                    }
+
+                    vSlides[(slideIndex + 1) % vSlides.length].setAttribute("style", "transform: translateX(0%) scale(1); opacity: 1;");
+                    vSlides[(slideIndex + 1) % vSlides.length].setAttribute("autoplay", "");
+                    vSlides[(slideIndex + 1) % vSlides.length].setAttribute("controls", "");
+                    vSlides[(slideIndex + 2) % vSlides.length].setAttribute("style", "transform: translateX(100%) scale(0.75); opacity: 1;");
+                    vSlides[(slideIndex + 3) % vSlides.length].setAttribute("style", "transform: translateX(200%) scale(0.75); opacity: 0;");
+                    vSlides[(slideIndex + 4) % vSlides.length].setAttribute("style", "transform: translateX(300%) scale(0.75); opacity: 0;");
+                    vSlides[(slideIndex + 5) % vSlides.length].setAttribute("style", "transform: translateX(400%) scale(0.75); opacity: 0;");
+                    vSlides[(slideIndex + 6) % vSlides.length].setAttribute("style", "transform: translateX(-500%) scale(0.75); opacity: 0;");
+                    vSlides[(slideIndex + 7) % vSlides.length].setAttribute("style", "transform: translateX(-400%) scale(0.75); opacity: 0;");
+                    vSlides[(slideIndex + 8) % vSlides.length].setAttribute("style", "transform: translateX(-300%) scale(0.75); opacity: 0;");
+                    vSlides[(slideIndex + 9) % vSlides.length].setAttribute("style", "transform: translateX(-200%) scale(0.75); opacity: 1;");
+                    vSlides[(slideIndex + 0) % vSlides.length].setAttribute("style", "transform: translateX(-100%) scale(0.75); opacity: 1;");
+
+
+                });
+
+                $(".next").on('click', function() {
+
+                    console.log("in")
+
+                });
+
+
+            });
+
+
+        }(jQuery));
+        var slideIndex;
+        $(document).on('ready', function() {
+            var slides = document.getElementById("testimonials-new-carousel_slides_slide-0").getElementsByClassName("TestimonialsCarousel__Image-sc-1fg86gc-13");
+            for (i = 0; i < slides.length; i++) {
+                if (slides[i].getAttribute("style")) {
+                    slideIndex = i;
+                    break;
+                }
+            }
+        });
+
+        function removeModal() {
+            $(".newmodal").remove();
+        }
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+
+            var vSlides = document.getElementsByClassName("TestimonialsCarouselVideos__Video-sc-1jlmkas-2");
+
+
+            for (var i = 0; i < vSlides.length; i++) {
+                vSlides[i].setAttribute("style", "");
+                vSlides[i].removeAttribute("autoplay");
+                vSlides[i].removeAttribute("controls");
+            }
+            n %= vSlides.length;
+            vSlides[(n + 1) % vSlides.length].setAttribute("style", "transform: translateX(0%) scale(1); opacity: 1;");
+            vSlides[(n + 1) % vSlides.length].setAttribute("autoplay", "");
+            vSlides[(n + 1) % vSlides.length].setAttribute("controls", "");
+            vSlides[(n + 2) % vSlides.length].setAttribute("style", "transform: translateX(100%) scale(0.75); opacity: 1;");
+            vSlides[(n + 3) % vSlides.length].setAttribute("style", "transform: translateX(200%) scale(0.75); opacity: 0;");
+            vSlides[(n + 4) % vSlides.length].setAttribute("style", "transform: translateX(300%) scale(0.75); opacity: 0;");
+            vSlides[(n + 5) % vSlides.length].setAttribute("style", "transform: translateX(400%) scale(0.75); opacity: 0;");
+            vSlides[(n + 6) % vSlides.length].setAttribute("style", "transform: translateX(-500%) scale(0.75); opacity: 0;");
+            vSlides[(n + 7) % vSlides.length].setAttribute("style", "transform: translateX(-400%) scale(0.75); opacity: 0;");
+            vSlides[(n + 8) % vSlides.length].setAttribute("style", "transform: translateX(-300%) scale(0.75); opacity: 0;");
+            vSlides[(n + 9) % vSlides.length].setAttribute("style", "transform: translateX(-200%) scale(0.75); opacity: 1;");
+            vSlides[(n + 0) % vSlides.length].setAttribute("style", "transform: translateX(-100%) scale(0.75); opacity: 1;");
+        }
+    </script>
+
+
+</body>
+
 </html>

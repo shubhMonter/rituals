@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Article from './component/article/article'
+import Header from './component/header'
+import Footer from './component/footer'
+import Testimonials from './component/website/testimonial'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div style={{ outLine: "none" }} tabIndex="-1" id="gatsby-focus-wrapper">
+            <div tabIndex="0" className="base__SiteRoot-sc-7xy8jg-0 frKmLh content-hub-page">
+                <div className="Navigation__Overlay-sc-1od9rzi-2 dwZCVC hidden" id="navigation-overlay"> </div>
+
+                <Header />
+                <Router>
+                    <Route exact path='/' component={Article} />
+                    <Route exact path='/test' component={Testimonials} />
+                    
+                </Router>
+                <Footer />
+            </div>
+        </div>
+    );
 }
 
 export default App;
