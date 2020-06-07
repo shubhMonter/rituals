@@ -10,14 +10,14 @@ function App() {
         <div style={{ outLine: "none" }} tabIndex="-1" id="gatsby-focus-wrapper">
             <div tabIndex="0" className="base__SiteRoot-sc-7xy8jg-0 frKmLh content-hub-page">
                 <div className="Navigation__Overlay-sc-1od9rzi-2 dwZCVC hidden" id="navigation-overlay"> </div>
-
-                <Header />
                 <Router>
-                    <Route exact path='/' component={Article} />
-                    <Route exact path='/test' component={Testimonials} />
+                        <Header />
                     
+                            <Route exact path='/test' component={Article} />
+                            <Route exact path='/' component={Testimonials} />
+                            
+                        <Footer />
                 </Router>
-                <Footer />
             </div>
         </div>
     );
